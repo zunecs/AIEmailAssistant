@@ -1,0 +1,16 @@
+{
+  "MailFolder": "AIEA-Test",
+  "ProcessedFolder": "Inbox\\AIEA-Done",
+  "ProcessedCategory": "AIEA-Processed",
+  "PollIntervalSeconds": "120",
+  "MaxEmailsPerRun": "5",
+  "GeminiApiUrl": "https://generativelanguage.googleapis.com/v1beta/models",
+  "GeminiModel": "gemini-3.5-flash-lite",
+  "GeminiCredentialName": "AIEA_GeminiApiKey",
+  "DefaultMeetingDurationMinutes": "30",
+  "DeadlineReminderMinutesBefore": "60",
+  "TimeZoneOffset": "+03:00",
+  "GeminiApiKey": "YOUR_KEY_HERE",
+  "AuditLogPath": "Documentation\\AuditLog.csv",
+  "LogPrefix": "AIEA"
+}

@@ -1,0 +1,6 @@
+{
+  "Name": "AIEmailAssistant",
+  "ProjectType": "Process",
+  "Description": "Reads new Outlook emails, extracts action items with Gemini, and creates Outlook calendar events and Microsoft To Do tasks.",
+  "MainFile": "Main.xaml"
+}

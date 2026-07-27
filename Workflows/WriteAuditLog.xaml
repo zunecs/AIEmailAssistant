@@ -1,0 +1,106 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="WriteAuditLog" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Status" Type="InArgument(x:String)" />
+    <x:Property Name="in_Extraction" Type="InArgument(x:String)" />
+    <x:Property Name="in_Subject" Type="InArgument(x:String)" />
+    <x:Property Name="in_Sender" Type="InArgument(x:String)" />
+    <x:Property Name="in_LogPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>WriteAuditLog_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WriteAuditLog" sap:VirtualizedContainerService.HintSize="881,420.65666666666664" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="string emailType = &quot;&quot;, priority = &quot;&quot;, summary = &quot;&quot;, replyDrafted = &quot;No&quot;;&#xA;int taskCount = 0, meetingCount = 0;&#xA;&#xA;try {&#xA;    var j = Newtonsoft.Json.Linq.JObject.Parse(in_Extraction);&#xA;    emailType = (string)j[&quot;email_type&quot;];&#xA;    priority  = (string)j[&quot;priority&quot;];&#xA;    summary   = (string)j[&quot;summary&quot;];&#xA;    taskCount    = ((Newtonsoft.Json.Linq.JArray)j[&quot;tasks&quot;]).Count;&#xA;    meetingCount = ((Newtonsoft.Json.Linq.JArray)j[&quot;meetings&quot;]).Count;&#xA;    replyDrafted = String.IsNullOrWhiteSpace((string)j[&quot;reply_draft&quot;]) ? &quot;No&quot; : &quot;Yes&quot;;&#xA;} catch { emailType = &quot;PARSE_ERROR&quot;; }&#xA;&#xA;Func&lt;string,string&gt; q = s =&gt; &quot;\&quot;&quot; + (s ?? &quot;&quot;).Replace(&quot;\&quot;&quot;,&quot;\&quot;\&quot;&quot;).Replace(&quot;\r&quot;,&quot; &quot;).Replace(&quot;\n&quot;,&quot; &quot;) + &quot;\&quot;&quot;;&#xA;&#xA;string dir = System.IO.Path.GetDirectoryName(in_LogPath);&#xA;if (!String.IsNullOrEmpty(dir) &amp;&amp; !System.IO.Directory.Exists(dir)) {&#xA;    System.IO.Directory.CreateDirectory(dir);&#xA;}&#xA;&#xA;if (!System.IO.File.Exists(in_LogPath)) {&#xA;    System.IO.File.WriteAllText(in_LogPath,&#xA;        &quot;Timestamp,Sender,Subject,EmailType,Priority,TasksCreated,MeetingsCreated,Status,ReplyDrafted,Summary\r\n&quot;,&#xA;        new System.Text.UTF8Encoding(true));&#xA;}&#xA;&#xA;string row = String.Join(&quot;,&quot;, new string[] {&#xA;    q(DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)),&#xA;    q(in_Sender), q(in_Subject), q(emailType), q(priority),&#xA;    q(taskCount.ToString()), q(meetingCount.ToString()),&#xA;    q(in_Status), q(replyDrafted), q(summary)&#xA;}) + &quot;\r\n&quot;;&#xA;&#xA;System.IO.File.AppendAllText(in_LogPath, row, new System.Text.UTF8Encoding(true));" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="450,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_LogPath">[in_LogPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Sender">[in_Sender]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Subject]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Extraction">[in_Extraction]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Status">[in_Status]</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+  </Sequence>
+</Activity>

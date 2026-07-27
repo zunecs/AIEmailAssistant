@@ -1,0 +1,43 @@
+{
+  "contents": [{ "parts": [{ "text": {{PROMPT}} }] }],
+  "generationConfig": {
+    "temperature": 0,
+    "responseMimeType": "application/json",
+    "responseSchema": {
+      "type": "object",
+      "properties": {
+        "email_type": { "type": "string", "enum": ["actionable", "informational"] },
+        "summary": { "type": "string" },
+        "priority": { "type": "string", "enum": ["High", "Normal", "Low"] },
+        "reply_draft": { "type": "string" },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "due_date": { "type": "string" },
+              "notes": { "type": "string" },
+              "priority": { "type": "string", "enum": ["High", "Normal", "Low"] }
+            },
+            "required": ["title", "due_date", "notes", "priority"]
+          }
+        },
+        "meetings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "start": { "type": "string" },
+              "end": { "type": "string" },
+              "location": { "type": "string" }
+            },
+            "required": ["title", "start", "end", "location"]
+          }
+        }
+      },
+      "required": ["email_type", "summary", "priority", "reply_draft", "tasks", "meetings"]
+    }
+  }
+}

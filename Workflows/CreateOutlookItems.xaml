@@ -1,0 +1,164 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateOutlookItems" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_Extraction" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>CreateOutlookItems_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CreateOutlookItems" sap:VirtualizedContainerService.HintSize="687,1131" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="njl:JObject" Name="jExtract" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JObject">[jExtract]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.Linq.JObject.Parse(in_Extraction)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentTask" sap:VirtualizedContainerService.HintSize="452,470.5" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jExtract(&quot;tasks&quot;)]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="njl:JToken">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentTask" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,339" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;dynamic app = Activator.CreateInstance(outlookType);&#xA;dynamic t = app.CreateItem(3);&#xA;t.Subject = title;&#xA;t.Body = notes;&#xA;t.Importance = priority == &quot;High&quot; ? 2 : (priority == &quot;Low&quot; ? 0 : 1);&#xA;if (!String.IsNullOrEmpty(due)) { t.DueDate = DateTime.Parse(due); }&#xA;t.Save();" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="title">[CurrentTask("title").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="due">[CurrentTask("due_date").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="notes">[CurrentTask("notes").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="priority">[CurrentTask("priority").ToString]</InArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each CurrentMeeting" sap:VirtualizedContainerService.HintSize="452,461.5" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jExtract(&quot;meetings&quot;)]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="njl:JToken">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="njl:JToken" Name="CurrentMeeting" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,339" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="try {&#xA;    Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;    dynamic app = Activator.CreateInstance(outlookType);&#xA;    dynamic a = app.CreateItem(1);&#xA;    a.Subject = title;&#xA;    a.Location = location;&#xA;    a.Start = DateTime.Parse(startTime);&#xA;    a.End = DateTime.Parse(endTime);&#xA;    a.ReminderSet = true;&#xA;    a.ReminderMinutesBeforeStart = Convert.ToInt32(reminderMins);&#xA;    a.Save();&#xA;} catch (Exception ex) {&#xA;    throw new Exception(&quot;MEETING FAIL: &quot; + ex.Message + &quot; | start=&quot; + startTime + &quot; end=&quot; + endTime + &quot; rem=&quot; + reminderMins);&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="title">[CurrentMeeting("title").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="startTime">[CurrentMeeting("start").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="endTime">[CurrentMeeting("end").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="location">[CurrentMeeting("location").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="reminderMins">[in_Config("DeadlineReminderMinutesBefore")]</InArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>
