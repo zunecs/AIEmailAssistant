@@ -1,0 +1,176 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GenerateWeeklyReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_Stats" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>GenerateWeeklyReport_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GenerateWeeklyReport" sap:VirtualizedContainerService.HintSize="716,1523.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strReportPrompt" />
+      <Variable x:TypeArguments="x:String" Name="strNarrativeRaw" />
+      <Variable x:TypeArguments="x:String" Name="strNarrative" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (!System.IO.File.Exists(logPath)) { stats = &quot;{\&quot;error\&quot;:\&quot;no log file\&quot;}&quot;; return; }&#xA;&#xA;var lines = System.IO.File.ReadAllLines(logPath, System.Text.Encoding.UTF8);&#xA;DateTime cutoff = DateTime.Now.AddDays(-7);&#xA;&#xA;int total = 0, actionable = 0, informational = 0, failed = 0;&#xA;int tasks = 0, meetings = 0, replyDrafts = 0, high = 0;&#xA;var senders = new Dictionary&lt;string,int&gt;();&#xA;&#xA;for (int i = 1; i &lt; lines.Length; i++) {&#xA;    var f = new List&lt;string&gt;();&#xA;    bool inQ = false; var cur = new System.Text.StringBuilder();&#xA;    foreach (char c in lines[i]) {&#xA;        if (c == '&quot;') { inQ = !inQ; }&#xA;        else if (c == ',' &amp;&amp; !inQ) { f.Add(cur.ToString()); cur.Clear(); }&#xA;        else { cur.Append(c); }&#xA;    }&#xA;    f.Add(cur.ToString());&#xA;    if (f.Count &lt; 10) continue;&#xA;&#xA;    DateTime ts;&#xA;    if (!DateTime.TryParse(f[0], out ts) || ts &lt; cutoff) continue;&#xA;&#xA;    total++;&#xA;    if (f[3] == &quot;actionable&quot;) actionable++;&#xA;    if (f[3] == &quot;informational&quot;) informational++;&#xA;    if (f[7].StartsWith(&quot;FAILED&quot;)) failed++;&#xA;    if (f[4] == &quot;High&quot;) high++;&#xA;    if (f[8] == &quot;Yes&quot;) replyDrafts++;&#xA;&#xA;    int n;&#xA;    if (int.TryParse(f[5], out n)) tasks += n;&#xA;    if (int.TryParse(f[6], out n)) meetings += n;&#xA;&#xA;    string s = f[1];&#xA;    if (!senders.ContainsKey(s)) senders[s] = 0;&#xA;    senders[s]++;&#xA;}&#xA;&#xA;var top = senders.OrderByDescending(kv =&gt; kv.Value).Take(5)&#xA;                 .Select(kv =&gt; &quot;\&quot;&quot; + kv.Key.Replace(&quot;\&quot;&quot;,&quot;'&quot;) + &quot;\&quot;:&quot; + kv.Value);&#xA;&#xA;stats = &quot;{\&quot;total\&quot;:&quot; + total + &quot;,\&quot;actionable\&quot;:&quot; + actionable&#xA;      + &quot;,\&quot;informational\&quot;:&quot; + informational + &quot;,\&quot;failed\&quot;:&quot; + failed&#xA;      + &quot;,\&quot;tasks\&quot;:&quot; + tasks + &quot;,\&quot;meetings\&quot;:&quot; + meetings&#xA;      + &quot;,\&quot;replyDraftsCreated\&quot;:&quot; + replyDrafts + &quot;,\&quot;high\&quot;:&quot; + high&#xA;      + &quot;,\&quot;topSenders\&quot;:{&quot; + String.Join(&quot;,&quot;, top) + &quot;}}&quot;;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="450,288" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="logPath">[in_Config("AuditLogPath")]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="stats">[out_Stats]</OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <Assign sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strReportPrompt]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["You are writing a short weekly summary for a professional's email assistant report. Here are the statistics for the past 7 days as JSON:" &amp; vbCrLf &amp; out_Stats &amp; vbCrLf &amp; vbCrLf &amp; "Write 3 to 4 sentences in plain professional English summarising the week: volume handled, how much was actionable, what was created, and one observation worth noting. Do not use bullet points. Do not repeat every number - pick the meaningful ones. Do not invent information that is not in the statistics."]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CallGemini - Invoke Workflow File (Workflows\CallGemini.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\CallGemini.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_UseSchema">False</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Response">[strNarrativeRaw]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Prompt">[strReportPrompt]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Assign sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strNarrative]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Newtonsoft.Json.Linq.JObject.Parse(strNarrativeRaw)("candidates")(0)("content")("parts")(0)("text").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="var j = Newtonsoft.Json.Linq.JObject.Parse(statsJson);&#xA;var sb = new System.Text.StringBuilder();&#xA;&#xA;sb.AppendLine(&quot;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;/head&gt;&lt;body&gt;&quot;);&#xA;sb.AppendLine(&quot;&lt;h2&gt;AI Email Assistant — Weekly Report&lt;/h2&gt;&quot;);&#xA;sb.AppendLine(&quot;&lt;p&gt;&lt;b&gt;Period:&lt;/b&gt; &quot; + DateTime.Now.AddDays(-7).ToString(&quot;yyyy-MM-dd&quot;)&#xA;            + &quot; to &quot; + DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;) + &quot;&lt;/p&gt;&quot;);&#xA;sb.AppendLine(&quot;&lt;p&gt;&quot; + narrative + &quot;&lt;/p&gt;&quot;);&#xA;sb.AppendLine(&quot;&lt;table border='1' cellpadding='6' style='border-collapse:collapse'&gt;&quot;);&#xA;sb.AppendLine(&quot;&lt;tr style='background:#DDEBF7'&gt;&lt;th&gt;Metric&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&quot;);&#xA;&#xA;Action&lt;string,string&gt; row = (k,v) =&gt;&#xA;    sb.AppendLine(&quot;&lt;tr&gt;&lt;td&gt;&quot; + k + &quot;&lt;/td&gt;&lt;td align='right'&gt;&quot; + v + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);&#xA;&#xA;row(&quot;Emails processed&quot;,     j[&quot;total&quot;].ToString());&#xA;row(&quot;Actionable&quot;,           j[&quot;actionable&quot;].ToString());&#xA;row(&quot;Informational&quot;,        j[&quot;informational&quot;].ToString());&#xA;row(&quot;High priority&quot;,        j[&quot;high&quot;].ToString());&#xA;row(&quot;Tasks created&quot;,        j[&quot;tasks&quot;].ToString());&#xA;row(&quot;Meetings created&quot;,     j[&quot;meetings&quot;].ToString());&#xA;row(&quot;Reply drafts created&quot;, j[&quot;replyDraftsCreated&quot;].ToString());&#xA;row(&quot;Failed&quot;,               j[&quot;failed&quot;].ToString());&#xA;&#xA;sb.AppendLine(&quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;);&#xA;&#xA;string dir = System.IO.Path.GetDirectoryName(outPath);&#xA;if (!String.IsNullOrEmpty(dir) &amp;&amp; !System.IO.Directory.Exists(dir))&#xA;    System.IO.Directory.CreateDirectory(dir);&#xA;&#xA;System.IO.File.WriteAllText(outPath.Replace(&quot;.xlsx&quot;, &quot;.html&quot;), sb.ToString(),&#xA;    new System.Text.UTF8Encoding(true));" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="450,288" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="statsJson">[out_Stats]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="narrative">[strNarrative]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="outPath">[in_Config("WeeklyReportPath")]</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" AttachmentsCollection="[{in_Config(&quot;WeeklyReportPath&quot;)}]" Body="[strNarrative]" ConnectionMode="Undefined" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="450,228.5" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[&quot;AI Email Assistant — Weekly Report &quot; + Now.ToString(&quot;yyyy-MM-dd&quot;)]" To="[in_Config(&quot;WeeklyReportRecipient&quot;)]" UseISConnection="False">
+      <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+        <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+      <ui:SendOutlookMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendOutlookMail.Files>
+    </ui:SendOutlookMail>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,167" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;NARRATIVE: &quot; + strNarrative]" />
+  </Sequence>
+</Activity>

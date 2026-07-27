@@ -94,7 +94,7 @@
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookItems" sap:VirtualizedContainerService.HintSize="687,1131" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateOutlookItems" sap:VirtualizedContainerService.HintSize="925,1131" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JObject" Name="jExtract" />
     </Sequence.Variables>
@@ -123,7 +123,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;dynamic app = Activator.CreateInstance(outlookType);&#xA;dynamic t = app.CreateItem(3);&#xA;t.Subject = title;&#xA;t.Body = notes;&#xA;t.Importance = priority == &quot;High&quot; ? 2 : (priority == &quot;Low&quot; ? 0 : 1);&#xA;if (!String.IsNullOrEmpty(due)) { t.DueDate = DateTime.Parse(due); }&#xA;t.Save();" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;dynamic app = Activator.CreateInstance(outlookType);&#xA;dynamic t = app.CreateItem(3);&#xA;t.Subject = title;&#xA;t.Body = notes;&#xA;t.Importance = priority == &quot;High&quot; ? 2 : 1;&#xA;if (!String.IsNullOrEmpty(due)) { t.DueDate = DateTime.Parse(due); }&#xA;t.Save();" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
               <ui:InvokeCode.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="title">[CurrentTask("title").ToString]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="due">[CurrentTask("due_date").ToString]</InArgument>

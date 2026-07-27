@@ -1,0 +1,4 @@
+{
+  "contents": [{ "parts": [{ "text": {{PROMPT}} }] }],
+  "generationConfig": { "temperature": 0.3 }
+}
