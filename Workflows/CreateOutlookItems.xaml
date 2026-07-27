@@ -40,6 +40,7 @@
       <x:String>System.Dynamic</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Reflection</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -94,7 +95,7 @@
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookItems" sap:VirtualizedContainerService.HintSize="925,1131" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateOutlookItems" sap:VirtualizedContainerService.HintSize="1464,2189.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JObject" Name="jExtract" />
     </Sequence.Variables>
@@ -103,7 +104,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="njl:JObject">[jExtract]</OutArgument>
       </Assign.To>
@@ -111,31 +112,76 @@
         <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.Linq.JObject.Parse(in_Extraction)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentTask" sap:VirtualizedContainerService.HintSize="452,470.5" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jExtract(&quot;tasks&quot;)]">
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentTask" sap:VirtualizedContainerService.HintSize="488,1529" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jExtract(&quot;tasks&quot;)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JToken">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentTask" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,339" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,1397.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strNewVector" />
+              <Variable x:TypeArguments="x:String" Name="strMatchInfo" />
+              <Variable x:TypeArguments="x:Boolean" Name="bDuplicate" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;dynamic app = Activator.CreateInstance(outlookType);&#xA;dynamic t = app.CreateItem(3);&#xA;t.Subject = title;&#xA;t.Body = notes;&#xA;t.Importance = priority == &quot;High&quot; ? 2 : 1;&#xA;if (!String.IsNullOrEmpty(due)) { t.DueDate = DateTime.Parse(due); }&#xA;t.Save();" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CallEmbedding - Invoke Workflow File (Workflows\CallEmbedding.xaml)" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\CallEmbedding.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_Vector">[strNewVector]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Text">[CurrentTask("title").ToString]</InArgument>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="isDuplicate = false;&#xA;matchInfo = &quot;&quot;;&#xA;&#xA;var newVec = Newtonsoft.Json.Linq.JArray.Parse(newVectorJson)&#xA;                .Select(v =&gt; (double)v).ToArray();&#xA;if (newVec.Length == 0) { return; }&#xA;&#xA;Func&lt;double[], double[], double&gt; cosine = (a, b) =&gt; {&#xA;    if (a.Length != b.Length) { return 0; }&#xA;    double dot = 0, ma = 0, mb = 0;&#xA;    for (int i = 0; i &lt; a.Length; i++) {&#xA;        dot += a[i] * b[i];&#xA;        ma  += a[i] * a[i];&#xA;        mb  += b[i] * b[i];&#xA;    }&#xA;    if (ma == 0 || mb == 0) { return 0; }&#xA;    return dot / (Math.Sqrt(ma) * Math.Sqrt(mb));&#xA;};&#xA;&#xA;string dir = System.IO.Path.GetDirectoryName(cachePath);&#xA;if (!String.IsNullOrEmpty(dir) &amp;&amp; !System.IO.Directory.Exists(dir)) {&#xA;    System.IO.Directory.CreateDirectory(dir);&#xA;}&#xA;&#xA;var cache = new Newtonsoft.Json.Linq.JArray();&#xA;if (System.IO.File.Exists(cachePath)) {&#xA;    try {&#xA;        cache = Newtonsoft.Json.Linq.JArray.Parse(&#xA;            System.IO.File.ReadAllText(cachePath, System.Text.Encoding.UTF8));&#xA;    } catch { cache = new Newtonsoft.Json.Linq.JArray(); }&#xA;}&#xA;&#xA;DateTime cutoff = DateTime.Now.AddDays(-Convert.ToInt32(lookbackDays));&#xA;double limit = Convert.ToDouble(threshold);&#xA;var kept = new Newtonsoft.Json.Linq.JArray();&#xA;double best = 0;&#xA;string bestTitle = &quot;&quot;;&#xA;&#xA;foreach (var entry in cache) {&#xA;    DateTime created;&#xA;    if (!DateTime.TryParse((string)entry[&quot;created&quot;], out created)) { continue; }&#xA;    if (created &lt; cutoff) { continue; }&#xA;    kept.Add(entry);&#xA;&#xA;    var oldVec = ((Newtonsoft.Json.Linq.JArray)entry[&quot;vector&quot;])&#xA;                    .Select(v =&gt; (double)v).ToArray();&#xA;    double score = cosine(newVec, oldVec);&#xA;    if (score &gt; best) { best = score; bestTitle = (string)entry[&quot;title&quot;]; }&#xA;}&#xA;&#xA;if (best &gt;= limit) {&#xA;    isDuplicate = true;&#xA;    matchInfo = String.Format(&quot;{0:F3} vs \&quot;{1}\&quot;&quot;, best, bestTitle);&#xA;} else {&#xA;    var fresh = new Newtonsoft.Json.Linq.JObject();&#xA;    fresh[&quot;title&quot;]   = title;&#xA;    fresh[&quot;created&quot;] = DateTime.Now.ToString(&quot;yyyy-MM-ddTHH:mm:ss&quot;);&#xA;    fresh[&quot;vector&quot;]  = Newtonsoft.Json.Linq.JArray.Parse(newVectorJson);&#xA;    kept.Add(fresh);&#xA;    matchInfo = String.Format(&quot;best {0:F3} vs \&quot;{1}\&quot;&quot;, best, bestTitle);&#xA;}&#xA;&#xA;System.IO.File.WriteAllText(cachePath, kept.ToString(),&#xA;    new System.Text.UTF8Encoding(false));" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,288" sap2010:WorkflowViewState.IdRef="InvokeCode_3" Language="CSharp">
               <ui:InvokeCode.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="title">[CurrentTask("title").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="due">[CurrentTask("due_date").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="notes">[CurrentTask("notes").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="priority">[CurrentTask("priority").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="newVectorJson">[strNewVector]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="cachePath">[in_Config("TaskVectorCachePath")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="threshold">[in_Config("SemanticSimilarityThreshold")]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="lookbackDays">[in_Config("DuplicateLookbackDays")]</InArgument>
+                <OutArgument x:TypeArguments="x:Boolean" x:Key="isDuplicate">[bDuplicate]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="matchInfo">[strMatchInfo]</OutArgument>
               </ui:InvokeCode.Arguments>
             </ui:InvokeCode>
+            <If Condition="[Not bDuplicate]" sap:VirtualizedContainerService.HintSize="452,872.5" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,515" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="Type outlookType = Type.GetTypeFromProgID(&quot;Outlook.Application&quot;);&#xA;dynamic app = Activator.CreateInstance(outlookType);&#xA;dynamic t = app.CreateItem(3);&#xA;t.Subject = title;&#xA;t.Body = notes;&#xA;t.Importance = priority == &quot;High&quot; ? 2 : 1;&#xA;t.Categories = &quot;AIEA-&quot; + priority;&#xA;if (!String.IsNullOrEmpty(due)) { t.DueDate = DateTime.Parse(due); }&#xA;t.Save();" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,288" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="title">[CurrentTask("title").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="due">[CurrentTask("due_date").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="notes">[CurrentTask("notes").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="priority">[CurrentTask("priority").ToString]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Created task: &quot;&quot;&quot; + CurrentTask(&quot;title&quot;).ToString + &quot;&quot;&quot; — &quot; + strMatchInfo]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,227" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Skipped duplicate task: &quot;&quot;&quot; + CurrentTask(&quot;title&quot;).ToString + &quot;&quot;&quot; — similarity &quot; + strMatchInfo]" />
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each CurrentMeeting" sap:VirtualizedContainerService.HintSize="452,461.5" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jExtract(&quot;meetings&quot;)]">
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each CurrentMeeting" sap:VirtualizedContainerService.HintSize="488,461.5" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jExtract(&quot;meetings&quot;)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JToken">
           <ActivityAction.Argument>

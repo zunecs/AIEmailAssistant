@@ -1,0 +1,5 @@
+{
+  "model": "models/gemini-embedding-001",
+  "content": { "parts": [{ "text": {{PROMPT}} }] },
+  "outputDimensionality": 768
+}

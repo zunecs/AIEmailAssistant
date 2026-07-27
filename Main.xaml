@@ -109,7 +109,7 @@
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1177,5652" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="925,5299" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Config" />
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Emails" />
@@ -127,17 +127,17 @@
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="570,176" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Config loaded: &quot; + Config.Count.ToString + &quot; settings. Folder=&quot; + Config(&quot;MailFolder&quot;) + &quot; | Model=&quot; + Config(&quot;GeminiModel&quot;)]" />
-    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="570,5276" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="570,4923" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
       <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="568,5153.5" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="568,4800.5" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="534,5093.5" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="534,4740.5" sap2010:WorkflowViewState.IdRef="TryCatch_2">
             <TryCatch.Try>
-              <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="532,4560" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="532,4207" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -150,15 +150,15 @@
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="498,176" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Polling — found &quot; + Emails.Count.ToString]" />
-                <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each CurrentItem" sap:VirtualizedContainerService.HintSize="498,3346" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Emails]">
+                <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each CurrentItem" sap:VirtualizedContainerService.HintSize="498,2817" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Emails]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="snm:MailMessage">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="CurrentItem" />
                       </ActivityAction.Argument>
-                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="472,3144.5" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="472,2615.5" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                         <TryCatch.Try>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="470,2541" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="470,2012" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strPrompt" />
                               <Variable x:TypeArguments="x:String" Name="strExtraction" />
@@ -226,15 +226,7 @@
                             </ui:InvokeWorkflowFile>
                             <ui:SetOutlookMailCategories Categories="[New String(){&quot;{Config(&quot;&quot;ProcessedCategory&quot;&quot;)}&quot;}]" DisplayName="Set Outlook Desktop Mail Categories" sap:VirtualizedContainerService.HintSize="436,197" sap2010:WorkflowViewState.IdRef="SetOutlookMailCategories_2" MailMessage="[CurrentItem]" />
                             <ui:MoveOutlookMessage Account="{x:Null}" DisplayName="Move Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_2" MailFolder="[Config(&quot;ProcessedFolder&quot;)]" MailMessage="[CurrentItem]" />
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;EXTRACTED: &quot; + strExtraction]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GenerateWeeklyReport - Invoke Workflow File (Workflows\GenerateWeeklyReport.xaml)" sap:VirtualizedContainerService.HintSize="436,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Workflows\GenerateWeeklyReport.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <OutArgument x:TypeArguments="x:String" x:Key="out_Stats">[WeeklyStats]</OutArgument>
-                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[Config]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;STATS: &quot; + WeeklyStats]" />
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,167" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;GEMINI [&quot; + GeminiRaw.Length.ToString + &quot; chars]: &quot; + GeminiRaw]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,167" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;EXTRACTED: &quot; + strExtraction]" />
                           </Sequence>
                         </TryCatch.Try>
                         <TryCatch.Catches>
@@ -276,6 +268,7 @@
                     </ActivityAction>
                   </ui:ForEach.Body>
                 </ui:ForEach>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="498,176" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;CHECK: last=[&quot; + Config(&quot;LastReportDate&quot;) + &quot;] today=[&quot; + Now.ToString(&quot;yyyy-MM-dd&quot;) + &quot;] day=&quot; + Now.DayOfWeek.ToString]" />
                 <If Condition="[Now.DayOfWeek.ToString = Config(&quot;WeeklyReportDay&quot;) AndAlso Now.Hour &gt;= CInt(Config(&quot;WeeklyReportHour&quot;)) AndAlso Config(&quot;LastReportDate&quot;) &lt;&gt; Now.ToString(&quot;yyyy-MM-dd&quot;)]" sap:VirtualizedContainerService.HintSize="498,801" sap2010:WorkflowViewState.IdRef="If_1">
                   <If.Then>
                     <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,580" sap2010:WorkflowViewState.IdRef="Sequence_12">
