@@ -6,9 +6,15 @@
     "responseSchema": {
       "type": "object",
       "properties": {
-        "email_type": { "type": "string", "enum": ["actionable", "informational"] },
+        "email_type": {
+          "type": "string",
+          "enum": ["actionable", "informational"]
+        },
         "summary": { "type": "string" },
-        "priority": { "type": "string", "enum": ["High", "Normal", "Low"] },
+        "priority": {
+          "type": "string",
+          "enum": ["High", "Normal", "Low"]
+        },
         "reply_draft": { "type": "string" },
         "tasks": {
           "type": "array",
@@ -18,7 +24,10 @@
               "title": { "type": "string" },
               "due_date": { "type": "string" },
               "notes": { "type": "string" },
-              "priority": { "type": "string", "enum": ["High", "Normal", "Low"] }
+              "priority": {
+                "type": "string",
+                "enum": ["High", "Normal", "Low"]
+              }
             },
             "required": ["title", "due_date", "notes", "priority"]
           }
@@ -35,9 +44,26 @@
             },
             "required": ["title", "start", "end", "location"]
           }
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "filename": { "type": "string" },
+              "category": {
+                "type": "string",
+                "enum": ["Invoices", "Contracts", "Reports", "Presentations", "Correspondence", "Other"]
+              },
+              "suggested_name": { "type": "string" },
+              "summary": { "type": "string" },
+              "key_dates": { "type": "string" }
+            },
+            "required": ["filename", "category", "suggested_name", "summary", "key_dates"]
+          }
         }
       },
-      "required": ["email_type", "summary", "priority", "reply_draft", "tasks", "meetings"]
+      "required": ["email_type", "summary", "priority", "reply_draft", "tasks", "meetings", "documents"]
     }
   }
 }

@@ -1,11 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="InitAllSettings" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="FileToLibrary" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_Files" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_Extraction" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap2010:WorkflowViewState.IdRef>InitAllSettings_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>FileToLibrary_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -34,19 +36,7 @@
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.Serialization</x:String>
-      <x:String>System.ComponentModel</x:String>
-      <x:String>System.Xml.Serialization</x:String>
-      <x:String>UiPath.Excel</x:String>
-      <x:String>UiPath.Platform.ResourceHandling</x:String>
-      <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.Linq.Expressions</x:String>
-      <x:String>UiPath.DataTableUtilities</x:String>
-      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
-      <x:String>Newtonsoft.Json.Linq</x:String>
-      <x:String>Newtonsoft.Json</x:String>
-      <x:String>System.Dynamic</x:String>
-      <x:String>System.Collections.Specialized</x:String>
-      <x:String>UiPath.Web.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -80,20 +70,12 @@
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
-      <AssemblyReference>System.Private.Xml</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Console</AssemblyReference>
       <AssemblyReference>System.Security.Permissions</AssemblyReference>
       <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Private.Uri</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
@@ -101,27 +83,19 @@
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
-      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
-      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
-      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
-      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitAllSettings" sap:VirtualizedContainerService.HintSize="832,568.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_Settings" />
-      <Variable x:TypeArguments="x:String" Name="strConfigJson" />
-    </Sequence.Variables>
+  <Sequence DisplayName="FileToLibrary" sap:VirtualizedContainerService.HintSize="614,693.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadTextFile File="{x:Null}" Content="[strConfigJson]" DisplayName="Read Text File" FileName="Config\Config.json" sap:VirtualizedContainerService.HintSize="450,124" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
-    <ui:DeserializeJson x:TypeArguments="scg:Dictionary(x:String, x:String)" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[out_Config]" JsonString="[strConfigJson]" />
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="foreach (var key in cfg.Keys.ToList()) {&#xA;    cfg[key] = Environment.ExpandEnvironmentVariables(cfg[key]);&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="334,223.5" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (files == null || files.Count == 0) { return; }&#xA;&#xA;var j = Newtonsoft.Json.Linq.JObject.Parse(extraction);&#xA;var docs = j[&quot;documents&quot;] as Newtonsoft.Json.Linq.JArray;&#xA;if (docs == null) { return; }&#xA;&#xA;string root = System.IO.Path.GetFullPath(libraryRoot);&#xA;&#xA;foreach (var doc in docs) {&#xA;    string declared = ((string)doc[&quot;filename&quot;] ?? &quot;&quot;).Trim();&#xA;    string category = ((string)doc[&quot;category&quot;] ?? &quot;Other&quot;).Trim();&#xA;    string suggested = ((string)doc[&quot;suggested_name&quot;] ?? &quot;&quot;).Trim();&#xA;    string summary   = ((string)doc[&quot;summary&quot;] ?? &quot;&quot;).Trim();&#xA;    string keyDates  = ((string)doc[&quot;key_dates&quot;] ?? &quot;&quot;).Trim();&#xA;&#xA;    string source = files.FirstOrDefault(f =&gt;&#xA;        System.IO.Path.GetFileName(f).Equals(declared, StringComparison.OrdinalIgnoreCase));&#xA;    if (source == null) {&#xA;        source = files.FirstOrDefault(f =&gt;&#xA;            System.IO.Path.GetFileName(f).IndexOf(declared, StringComparison.OrdinalIgnoreCase) &gt;= 0);&#xA;    }&#xA;    if (source == null || !System.IO.File.Exists(source)) { continue; }&#xA;&#xA;    string ext = System.IO.Path.GetExtension(source);&#xA;    if (suggested.Length == 0) {&#xA;        suggested = System.IO.Path.GetFileNameWithoutExtension(source);&#xA;    }&#xA;    suggested = String.Join(&quot;_&quot;, suggested.Split(System.IO.Path.GetInvalidFileNameChars()));&#xA;    if (suggested.Length &gt; 60) { suggested = suggested.Substring(0, 60); }&#xA;&#xA;    string folder = System.IO.Path.Combine(root, category);&#xA;    if (!System.IO.Directory.Exists(folder)) {&#xA;        System.IO.Directory.CreateDirectory(folder);&#xA;    }&#xA;&#xA;    string stamp = DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;);&#xA;    string baseName = stamp + &quot;_&quot; + suggested;&#xA;    string target = System.IO.Path.Combine(folder, baseName + ext);&#xA;&#xA;    int n = 2;&#xA;    while (System.IO.File.Exists(target)) {&#xA;        target = System.IO.Path.Combine(folder, baseName + &quot;_&quot; + n + ext);&#xA;        n++;&#xA;    }&#xA;&#xA;    System.IO.File.Move(source, target);&#xA;&#xA;    var md = new System.Text.StringBuilder();&#xA;    md.AppendLine(&quot;# &quot; + suggested.Replace(&quot;_&quot;, &quot; &quot;));&#xA;    md.AppendLine();&#xA;    md.AppendLine(&quot;**Category:** &quot; + category);&#xA;    md.AppendLine(&quot;**Original filename:** &quot; + System.Text.RegularExpressions.Regex.Replace(declared, @&quot;^\d{14}_&quot;, &quot;&quot;));&#xA;    md.AppendLine(&quot;**Filed:** &quot; + DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm&quot;));&#xA;    md.AppendLine();&#xA;    md.AppendLine(&quot;## Summary&quot;);&#xA;    md.AppendLine(summary);&#xA;    if (keyDates.Length &gt; 0) {&#xA;        md.AppendLine();&#xA;        md.AppendLine(&quot;## Key dates&quot;);&#xA;        md.AppendLine(keyDates);&#xA;    }&#xA;&#xA;    System.IO.File.WriteAllText(&#xA;        System.IO.Path.ChangeExtension(target, &quot;.md&quot;),&#xA;        md.ToString(), new System.Text.UTF8Encoding(true));&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="450,279" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
       <ui:InvokeCode.Arguments>
-        <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="cfg">[out_Config]</InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="extraction">[in_Extraction]</InArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="files">[in_Files]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="libraryRoot">[in_Config("LibraryRootPath")]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
   </Sequence>

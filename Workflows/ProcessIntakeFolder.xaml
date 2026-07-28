@@ -1,0 +1,269 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessIntakeFolder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ProcessIntakeFolder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ProcessIntakeFolder" sap:VirtualizedContainerService.HintSize="832,2923" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="lstIntakeFiles" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="foundFiles = new List&lt;string&gt;();&#xA;string root = System.IO.Path.GetFullPath(intakePath);&#xA;if (!System.IO.Directory.Exists(root)) {&#xA;    System.IO.Directory.CreateDirectory(root);&#xA;    return;&#xA;}&#xA;&#xA;var allowed = supported.ToLower().Split(',').Select(s =&gt; s.Trim()).ToList();&#xA;int limit = Convert.ToInt32(maxFiles);&#xA;&#xA;foreach (string f in System.IO.Directory.GetFiles(root)) {&#xA;    if (foundFiles.Count &gt;= limit) { break; }&#xA;&#xA;    string ext = System.IO.Path.GetExtension(f).ToLower();&#xA;    if (!allowed.Contains(ext)) { continue; }&#xA;&#xA;    if (System.IO.File.GetLastWriteTime(f) &gt; DateTime.Now.AddMinutes(-1)) { continue; }&#xA;&#xA;    try {&#xA;        using (var fs = System.IO.File.Open(f, System.IO.FileMode.Open,&#xA;                   System.IO.FileAccess.Read, System.IO.FileShare.None)) { }&#xA;        foundFiles.Add(f);&#xA;    } catch { }&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="524,288" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="intakePath">[in_Config("IntakeFolderPath")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="supported">[in_Config("SupportedAttachmentTypes")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="maxFiles">[in_Config("MaxIntakeFilesPerRun")]</InArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="foundFiles">[lstIntakeFiles]</OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="524,176" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Intake — found &quot; + lstIntakeFiles.Count.ToString]" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each CurrentIntakeFile" sap:VirtualizedContainerService.HintSize="524,2436" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstIntakeFiles]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="CurrentIntakeFile" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,2313.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="488,2253.5" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="486,1804" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="strIntakeText" />
+                    <Variable x:TypeArguments="x:String" Name="strIntakePrompt" />
+                    <Variable x:TypeArguments="x:String" Name="strIntakeRaw" />
+                    <Variable x:TypeArguments="x:String" Name="strIntakeExtraction" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="extracted = &quot;&quot;;&#xA;string ext = System.IO.Path.GetExtension(filePath).ToLower();&#xA;&#xA;if (ext == &quot;.txt&quot; || ext == &quot;.csv&quot; || ext == &quot;.md&quot;) {&#xA;    extracted = System.IO.File.ReadAllText(filePath, System.Text.Encoding.UTF8);&#xA;} else if (ext == &quot;.docx&quot; || ext == &quot;.doc&quot;) {&#xA;    dynamic word = null; dynamic doc = null;&#xA;    try {&#xA;        word = Activator.CreateInstance(Type.GetTypeFromProgID(&quot;Word.Application&quot;));&#xA;        word.Visible = false;&#xA;        word.DisplayAlerts = 0;&#xA;        doc = word.Documents.Open(filePath);&#xA;        extracted = (string)doc.Content.Text;&#xA;        extracted = extracted.Replace(&quot;\u0007&quot;, &quot;\t&quot;).Replace(&quot;\r&quot;, &quot;\n&quot;);&#xA;        while (extracted.Contains(&quot;\n\n\n&quot;)) {&#xA;            extracted = extracted.Replace(&quot;\n\n\n&quot;, &quot;\n\n&quot;);&#xA;        }&#xA;    } catch (Exception ex2) {&#xA;        extracted = &quot;[Could not read document: &quot; + ex2.Message + &quot;]&quot;;&#xA;    } finally {&#xA;        try { if (doc != null) doc.Close(false); } catch { }&#xA;        try { if (word != null) word.Quit(); } catch { }&#xA;    }&#xA;} else if (ext == &quot;.xlsx&quot; || ext == &quot;.xls&quot;) {&#xA;    dynamic excel = null; dynamic wb = null;&#xA;    try {&#xA;        excel = Activator.CreateInstance(Type.GetTypeFromProgID(&quot;Excel.Application&quot;));&#xA;        excel.Visible = false;&#xA;        excel.DisplayAlerts = false;&#xA;        wb = excel.Workbooks.Open(filePath);&#xA;        var sb = new System.Text.StringBuilder();&#xA;        foreach (dynamic sheet in wb.Worksheets) {&#xA;            sb.AppendLine(&quot;[Sheet: &quot; + (string)sheet.Name + &quot;]&quot;);&#xA;            dynamic used = sheet.UsedRange;&#xA;            int rows = (int)used.Rows.Count;&#xA;            int cols = (int)used.Columns.Count;&#xA;            if (rows &gt; 200) { rows = 200; }&#xA;            if (cols &gt; 30)  { cols = 30; }&#xA;            for (int r = 1; r &lt;= rows; r++) {&#xA;                var line = new List&lt;string&gt;();&#xA;                for (int c = 1; c &lt;= cols; c++) {&#xA;                    dynamic cell = used.Cells[r, c];&#xA;                    object v = cell.Text;&#xA;                    line.Add(v == null ? &quot;&quot; : v.ToString());&#xA;                }&#xA;                string joined = String.Join(&quot; | &quot;, line).Trim();&#xA;                if (joined.Replace(&quot;|&quot;, &quot;&quot;).Trim().Length &gt; 0) { sb.AppendLine(joined); }&#xA;            }&#xA;        }&#xA;        extracted = sb.ToString();&#xA;    } catch (Exception ex2) {&#xA;        extracted = &quot;[Could not read spreadsheet: &quot; + ex2.Message + &quot;]&quot;;&#xA;    } finally {&#xA;        try { if (wb != null) wb.Close(false); } catch { }&#xA;        try { if (excel != null) excel.Quit(); } catch { }&#xA;    }&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,288" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="filePath">[CurrentIntakeFile]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="extracted">[strIntakeText]</OutArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                  <If Condition="[System.IO.Path.GetExtension(CurrentIntakeFile).ToLower = &quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="452,405" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ReadPDFText PreserveFormatting="{x:Null}" ResourceFile="{x:Null}" DisplayName="Read PDF Text" FileName="[CurrentIntakeFile]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[strIntakeText]">
+                          <ui:ReadPDFText.Item>
+                            <upap:ItemArgument x:TypeArguments="upr:IResource" ResourceFile="{x:Null}" FileName="[CurrentIntakeFile]" />
+                          </ui:ReadPDFText.Item>
+                        </ui:ReadPDFText>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90.5" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[strIntakePrompt]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[System.IO.File.ReadAllText("Config\IntakePromptTemplate.txt", System.Text.Encoding.UTF8).Replace("{{TODAY}}", Now.ToString("yyyy-MM-dd")).Replace("{{TZ}}", in_Config("TimeZoneOffset")).Replace("{{FILENAME}}", System.IO.Path.GetFileName(CurrentIntakeFile)).Replace("{{CONTENT}}", strIntakeText)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CallGemini - Invoke Workflow File (Workflows\CallGemini.xaml)" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\CallGemini.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:Boolean" x:Key="in_UseSchema">True</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_Response">[strIntakeRaw]</OutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Prompt">[strIntakePrompt]</InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[strIntakeExtraction]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Newtonsoft.Json.Linq.JObject.Parse(strIntakeRaw)("candidates")(0)("content")("parts")(0)("text").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CreateOutlookItems - Invoke Workflow File (Workflows\CreateOutlookItems.xaml)" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\CreateOutlookItems.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Extraction">[strIntakeExtraction]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="FileToLibrary - Invoke Workflow File (Workflows\FileToLibrary.xaml)" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\FileToLibrary.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[in_Config]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_Files">[New List(Of String) From {CurrentIntakeFile}]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Extraction">[strIntakeExtraction]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="WriteAuditLog - Invoke Workflow File (Workflows\WriteAuditLog.xaml)" sap:VirtualizedContainerService.HintSize="452,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\WriteAuditLog.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Status">SUCCESS</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Extraction">[strIntakeExtraction]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[System.IO.Path.GetFileName(CurrentIntakeFile)]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Sender">%[Document Intake]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_LogPath">[in_Config("AuditLogPath")]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="ex" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Catch {ExceptionType}" sap:VirtualizedContainerService.HintSize="486,227" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,167" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Intake failed for &quot; + System.IO.Path.GetFileName(CurrentIntakeFile) + &quot;: &quot; + ex.Message]" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="486,90.5" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </TryCatch.Finally>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>

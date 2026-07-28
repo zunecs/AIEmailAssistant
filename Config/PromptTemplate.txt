@@ -8,6 +8,8 @@ Received: {{RECEIVED}}
 Subject: {{SUBJECT}}
 Body:
 {{BODY}}
+ATTACHMENTS
+{{ATTACHMENTS}}
 
 RULES
 1. Only extract actions the RECIPIENT must personally do. Ignore actions assigned to other people.
@@ -23,3 +25,12 @@ RULES
 9. The email may be in Arabic or English. Always output task titles and summaries in the SAME language as the email. Convert Arabic-Indic numerals (٠١٢٣٤٥٦٧٨٩) to Western digits in all dates.
 10. reply_draft: write a short professional reply the recipient could send back, confirming what they will do and by when. Match the language of the email. Do not invent commitments the email does not imply. If the email needs no reply (newsletters, FYI, announcements), return an empty string.
 11. Only create a meetings entry when the email states a specific date AND time. If a meeting is proposed with vague or optional timing ("sometime next week", "Tuesday or Wednesday", "let me know what works"), create a TASK instead titled "Schedule: <topic>" with the proposed timing in notes, and leave meetings empty. Never invent a time that the email does not state.
+12. The EMAIL BODY is the instruction. Attachments are supporting context only. Extract tasks from what the email asks YOU to do — never from obligations described inside an attachment that belong to other parties, contracts, or third-party organisations.
+13. Use attachment content to add specific detail to a task (reference numbers, amounts, clause names, exact document titles) and to find deadlines the email refers to but does not state.
+14. If the attachment text is empty, missing, or marked as unreadable, work from the email body alone and do not mention the attachment problem in the output.
+15. documents: one entry per attachment listed in the ATTACHMENTS section. Use the exact filename from the "--- ATTACHMENT: ... ---" header.
+16. category: classify by what the document IS, not what the email is about.
+17. suggested_name: a descriptive filename WITHOUT extension, format: Organisation_DocumentType_Identifier. Use underscores, no spaces, no punctuation, max 60 characters. Example: Aramco_ProgressReport_Weeks3-4
+18. summary: 2 to 3 sentences describing what the document contains. Written for someone who has not opened it.
+19. key_dates: any dates found inside the document with a one-word label each, comma separated. Example: "submitted 2026-07-23, due 2026-08-01". Empty string if none.
+20. If there are no attachments, return an empty documents array.

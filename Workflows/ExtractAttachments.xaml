@@ -1,0 +1,211 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractAttachments" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_Files" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="out_Text" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_Mail" Type="InArgument(snm:MailMessage)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ExtractAttachments_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExtractAttachments" sap:VirtualizedContainerService.HintSize="832,1855.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strPageText" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="savedFiles = new List&lt;string&gt;();&#xA;&#xA;if (!System.IO.Directory.Exists(tempPath)) {&#xA;    System.IO.Directory.CreateDirectory(tempPath);&#xA;}&#xA;&#xA;var allowed = supported.ToLower().Split(',').Select(s =&gt; s.Trim()).ToList();&#xA;&#xA;foreach (var att in mail.Attachments) {&#xA;    string name = att.Name;&#xA;    string ext = System.IO.Path.GetExtension(name).ToLower();&#xA;    if (!allowed.Contains(ext)) { continue; }&#xA;&#xA;    string safe = String.Join(&quot;_&quot;, name.Split(System.IO.Path.GetInvalidFileNameChars()));&#xA;    string dest = System.IO.Path.GetFullPath(System.IO.Path.Combine(tempPath,&#xA;    DateTime.Now.ToString(&quot;yyyyMMddHHmmss&quot;) + &quot;_&quot; + safe));&#xA;&#xA;    using (var fs = new System.IO.FileStream(dest, System.IO.FileMode.Create)) {&#xA;        att.ContentStream.Position = 0;&#xA;        att.ContentStream.CopyTo(fs);&#xA;    }&#xA;    savedFiles.Add(dest);&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="524,288" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="snm:MailMessage" x:Key="mail">[in_Mail]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="tempPath">[in_Config("AttachmentTempPath")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="supported">[in_Config("SupportedAttachmentTypes")]</InArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="savedFiles">[out_Files]</OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each CurrentFile" sap:VirtualizedContainerService.HintSize="524,1377.5" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[out_Files]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="CurrentFile" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,1246" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[CurrentFile.ToLower.EndsWith(&quot;.pdf&quot;)]" sap:VirtualizedContainerService.HintSize="488,1019" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ReadPDFText PreserveFormatting="{x:Null}" ResourceFile="{x:Null}" DisplayName="Read PDF Text" FileName="[CurrentFile]" sap:VirtualizedContainerService.HintSize="452,115" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[strPageText]">
+                    <ui:ReadPDFText.Item>
+                      <upap:ItemArgument x:TypeArguments="upr:IResource" ResourceFile="{x:Null}" FileName="[CurrentFile]" />
+                    </ui:ReadPDFText.Item>
+                  </ui:ReadPDFText>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,704.5" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[CurrentFile.ToLower.EndsWith(&quot;.docx&quot;) OrElse CurrentFile.ToLower.EndsWith(&quot;.doc&quot;) OrElse CurrentFile.ToLower.EndsWith(&quot;.xlsx&quot;) OrElse CurrentFile.ToLower.EndsWith(&quot;.xls&quot;)]" sap:VirtualizedContainerService.HintSize="452,644.5" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,339" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="extracted = &quot;&quot;;&#xA;string ext = System.IO.Path.GetExtension(filePath).ToLower();&#xA;&#xA;if (ext == &quot;.docx&quot; || ext == &quot;.doc&quot;) {&#xA;    dynamic word = null; dynamic doc = null;&#xA;    try {&#xA;        word = Activator.CreateInstance(Type.GetTypeFromProgID(&quot;Word.Application&quot;));&#xA;        word.Visible = false;&#xA;        word.DisplayAlerts = 0;&#xA;        doc = word.Documents.Open(filePath);&#xA;        extracted = (string)doc.Content.Text;&#xA;        extracted = extracted.Replace(&quot;\u0007&quot;, &quot;\t&quot;).Replace(&quot;\r&quot;, &quot;\n&quot;);&#xA;        while (extracted.Contains(&quot;\n\n\n&quot;)) {&#xA;            extracted = extracted.Replace(&quot;\n\n\n&quot;, &quot;\n\n&quot;);&#xA;        }&#xA;    } catch (Exception ex) {&#xA;        extracted = &quot;[Could not read document: &quot; + ex.Message + &quot;]&quot;;&#xA;    } finally {&#xA;        try { if (doc != null) doc.Close(false); } catch { }&#xA;        try { if (word != null) word.Quit(); } catch { }&#xA;    }&#xA;} else {&#xA;    dynamic excel = null; dynamic wb = null;&#xA;    try {&#xA;        excel = Activator.CreateInstance(Type.GetTypeFromProgID(&quot;Excel.Application&quot;));&#xA;        excel.Visible = false;&#xA;        excel.DisplayAlerts = false;&#xA;        wb = excel.Workbooks.Open(filePath);&#xA;        var sb = new System.Text.StringBuilder();&#xA;&#xA;        foreach (dynamic sheet in wb.Worksheets) {&#xA;            sb.AppendLine(&quot;[Sheet: &quot; + (string)sheet.Name + &quot;]&quot;);&#xA;            dynamic used = sheet.UsedRange;&#xA;            int rows = (int)used.Rows.Count;&#xA;            int cols = (int)used.Columns.Count;&#xA;            if (rows &gt; 200) { rows = 200; }&#xA;            if (cols &gt; 30)  { cols = 30; }&#xA;&#xA;            for (int r = 1; r &lt;= rows; r++) {&#xA;                var line = new List&lt;string&gt;();&#xA;                for (int c = 1; c &lt;= cols; c++) {&#xA;                    dynamic cell = used.Cells[r, c];&#xA;                    object v = cell.Text;&#xA;                    line.Add(v == null ? &quot;&quot; : v.ToString());&#xA;                }&#xA;                string joined = String.Join(&quot; | &quot;, line).Trim();&#xA;                if (joined.Replace(&quot;|&quot;, &quot;&quot;).Trim().Length &gt; 0) { sb.AppendLine(joined); }&#xA;            }&#xA;        }&#xA;        extracted = sb.ToString();&#xA;    } catch (Exception ex) {&#xA;        extracted = &quot;[Could not read spreadsheet: &quot; + ex.Message + &quot;]&quot;;&#xA;    } finally {&#xA;        try { if (wb != null) wb.Close(false); } catch { }&#xA;        try { if (excel != null) excel.Quit(); } catch { }&#xA;    }&#xA;}" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,279" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="filePath">[CurrentFile]</InArgument>
+                            <OutArgument x:TypeArguments="x:String" x:Key="extracted">[strPageText]</OutArgument>
+                          </ui:InvokeCode.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeCode>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ReadTextFile File="{x:Null}" Content="[strPageText]" DisplayName="Read Text File" FileName="[CurrentFile]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Assign sap:VirtualizedContainerService.HintSize="488,167" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_Text]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[If(out_Text Is Nothing, "", out_Text) &amp; vbCrLf &amp; "--- ATTACHMENT: " &amp; System.IO.Path.GetFileName(CurrentFile) &amp; " ---" &amp; vbCrLf &amp; strPageText]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <Assign sap:VirtualizedContainerService.HintSize="524,167" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_Text]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(out_Text Is Nothing, "", If(out_Text.Length &gt; CInt(in_Config("MaxAttachmentChars")), out_Text.Substring(0, CInt(in_Config("MaxAttachmentChars"))) &amp; vbCrLf &amp; "[ATTACHMENT TEXT TRUNCATED]", out_Text))]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>
