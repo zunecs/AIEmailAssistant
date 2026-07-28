@@ -1,14 +1,21 @@
+# Secrets — never commit
 Config/Config.json
+
+# Generated data containing real senders, subjects, and content
 Documentation/AuditLog.csv
+Documentation/TaskVectors.json
+Documentation/WeeklyReport.html
+Documentation/Temp/
+Documentation/Library/
+
+# UiPath internals
 .local/
 .settings/
 .objects/
+.project/
+.tmh/
 *.nupkg
-################################################################################
-# Added by UiPath Studio
-# Prevent caching and local artifacts from being committed
-################################################################################
-.local
-################################################################################
-# End of UiPath Studio common ignores
-################################################################################
+
+# Windows
+Thumbs.db
+desktop.ini
